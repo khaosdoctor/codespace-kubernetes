@@ -1,0 +1,41 @@
+{
+    "name": "Codespaces Kubernetes Starter",
+    "extensions": [
+        "ms-azuretools.vscode-docker",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "coenraads.bracket-pair-colorizer-2",
+        "eamodio.gitlens",
+        "vscode-icons-team.vscode-icons",
+        "visualstudioexptteam.vscodeintellicode"
+    ],
+    "remoteEnv": {
+		"SYNC_LOCALHOST_KUBECONFIG": "true"
+	},
+	"mounts": [
+		"source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind",
+		"source=${env:HOME}${env:USERPROFILE}/.kube,target=/usr/local/share/kube-localhost,type=bind"
+		// Uncomment the next line to also sync certs in your .minikube folder
+		// "source=${env:HOME}${env:USERPROFILE}/.minikube,target=/usr/local/share/minikube-localhost,type=bind"
+	],
+    "postCreateCommand": "kubectl version",
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+        8080,
+        3000,
+        9096,
+        8000
+    ],
+    "dockerFile": "Dockerfile",
+    "settings": {
+        "terminal.integrated.shell.linux": "/usr/bin/zsh",
+        "files.exclude": {
+            "**/.git": true,
+            "**/.svn": true,
+            "**/.hg": true,
+            "**/CVS": true,
+            "**/.DS_Store": true,
+            "**/CODE_OF_CONDUCT.md": true,
+            "**/LICENSE": true
+        }
+    }
+}
